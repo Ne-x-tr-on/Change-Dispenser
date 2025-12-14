@@ -28,5 +28,35 @@ The algorithm returns the minimum number of notes or coins required to give exac
 
 ---
 
+## Future Improvements
+
+- **Inventory Awareness**
+  Track available count per denomination and refuse change if exact denominations are unavailable.
+
+- **Error Handling**
+  Return a `Result` instead of panicking when exact change cannot be made.
+
+- **Configurable Denominations**
+  Load supported denominations dynamically instead of hardcoding values.
+
+- **Embedded Integration**
+  Interface with real coin and bill dispensers using GPIO control.
+
+- **Transaction Logging**
+  Log all change-dispensing operations for auditing and debugging.
+
+- **Timeout & Retry Logic**
+  Detect dispenser failures and retry safely.
+
+- **Unit Testing**
+  Add test cases for edge conditions such as zero amount and insufficient change.
+
+- **Power-Failure Recovery**
+  Persist dispenser state to handle unexpected shutdowns.
+
+- **Multi-Currency Support**
+  Extend the algorithm to support different currencies and denomination sets.
+
+
 ## Language
 - Rust
