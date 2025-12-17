@@ -1,25 +1,13 @@
-fn dispense_change(mut amount:u32)-> Vec<u32>{
-    let denomination = [1000,500,200,100,50,20,5];
-    let mut result = Vec::new();
-
-    for &d in denomination.iter(){
-        while amount>= d{
-            amount-=d;
-            result.push(d);
-        }
-    }
-    if amount !=0{
-        panic!("Exact Change cannot be made");
-    }
-    result
-}
+use std::net::TcpListener;
+use std::io::Write;
 
 fn main() {
-    println!("Change Dispenser");
+    let listener = TcpListener::bind("0.0.0.0:8000").unwrap();
+    println!("Server running on http://0.0.0.0:8000");
 
-    let amount = 5000;
-    let change = dispense_change(amount);
-
-    println!("Change for {}:",amount);
-    print!("{:?}",change);
+    for stream in listener.incoming() {
+        let mut stream = stream.unwrap();
+        let response = "HTTP/1.1 200 OK\r\nContent-Length: 13\r\n\r\nHello, World!";
+        stream.write_all(response.as_bytes()).unwrap();
+    }
 }
